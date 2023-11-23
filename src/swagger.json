@@ -1,0 +1,129 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentacao - Sistema Online de Distribuicao de Disciplinas",
+    "description": "Sistema para alocacao de professores nas disciplinas ofertadas pela FACOM",
+    "version": "1.0.0",
+    "contact": {
+      "email": "sodd_tcc@outlook.com"
+    }
+  },
+  "paths": {
+    "/sessions": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Autenticar um usuário",
+        "description": "Autenticar um usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password incorrect"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": ["Contas"],
+        "summary": "Criação de Conta",
+        "description": "Criar uma nova conta, podendo ser um administrador ou não",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "email": "johndoe@bol.com.br",
+                  "password": "hisIncrediblePassword"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario criado com sucesso!"
+          },
+          "500": {
+            "description": "Usuario ja existe!"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Contas"],
+        "summary": "Listar todas as contas",
+        "description": "Listar todas as contas",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token não encontrado!"
+          },
+          "403": {
+            "description": "Usuário não é um administrador!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
