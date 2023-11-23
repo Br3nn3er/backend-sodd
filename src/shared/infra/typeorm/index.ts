@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import { DataSource } from "typeorm";
 
 import { AtribuicaoManual } from "../../../modules/dinamica/infra/typeorm/entities/AtribuicaoManual";
@@ -62,18 +63,15 @@ import { AlterTableIsUniqueStatusDistribuicao1636221018524 } from "./migrations/
 import { CreateStatusPossibilidades1636221364682 } from "./migrations/1636221364682-CreateStatusPossibilidades";
 import { LigarUsuarioComProfessor1659541099710 } from "./migrations/1659541099710-LigarUsuarioComProfessor";
 
-require("dotenv").config();
+dotenv.config();
 
 export const dataSource = new DataSource({
   type: "postgres",
-  url:
-    process.env.DATABASE_URL ||
-    "postgres://postgres:a1s2d3@localhost:5432/disciplinas",
-  host: process.env.TYPEORM_HOST || "localhost",
+  host: process.env.TYPEORM_HOST || "tcc.postgres.database.azure.com",
   port: (process.env.TYPEORM_PORT as unknown as number) || 5432,
-  username: process.env.TYPEORM_USERNAME || "postgres",
-  password: process.env.TYPEORM_PASSWORD || "a1s2d3",
-  database: process.env.TYPEORM_DATABASE || "disciplinas",
+  username: process.env.TYPEORM_USERNAME || "sodd",
+  password: process.env.TYPEORM_PASSWORD || "a1s2d3f4#B",
+  database: process.env.TYPEORM_DATABASE || "postgres",
   logging: true,
   migrations: [
     CreateUser1628620725509,

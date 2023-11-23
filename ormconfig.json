@@ -1,12 +1,19 @@
 {
   "type": "postgres",
   "port": 5432,
-  "host": "localhost",
-  "username": "postgres",
-  "password": "a1s2d3",
-  "database": "disciplinas",
+  "host": "tcc.postgres.database.azure.com",
+  "username": "sodd",
+  "password": "a1s2d3f4#B",
+  "database": "postgres",
   "logging": true,
   "autoLoadEntities": true,
+  "ssl": false,
+  "encrypt": false,
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  },
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],
