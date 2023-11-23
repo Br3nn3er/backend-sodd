@@ -70,7 +70,7 @@ export const dataSource = new DataSource({
     process.env.DATABASE_URL ||
     "postgres://postgres:a1s2d3@localhost:5432/disciplinas",
   host: process.env.TYPEORM_HOST || "localhost",
-  port: 5432,
+  port: (process.env.TYPEORM_PORT as unknown as number) || 5432,
   username: process.env.TYPEORM_USERNAME || "postgres",
   password: process.env.TYPEORM_PASSWORD || "a1s2d3",
   database: process.env.TYPEORM_DATABASE || "disciplinas",
